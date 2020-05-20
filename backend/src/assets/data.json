@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Ensalada de Quinoa",
+        "price": 12400,
+        "ingredients": [
+            {
+                "id": 1,
+                "name": "Quinoa",
+                "type": "Cereal, grano",
+                "properties": "Facil preparacion, multiples vitaminas",
+                "onDishes": [1]
+            }
+        ],
+        "difficult": "Facil",
+        "description": "Ensalada fresca a base quinoa, uvas, almendras y menta"
+    }
+]
