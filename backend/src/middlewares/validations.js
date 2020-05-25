@@ -19,6 +19,11 @@ const existingPlate = (req, res, next) => {
 const validateBodyPayload = (req, res, next) => {
     const {id, name, ingredients} = req.body;
 
+    // Validations for PUT method.
+    if (req.method === 'PUT' && name && ingredients.length) {
+        next();
+    }
+
     if (id && name && ingredients.length) {
         next();
     }
