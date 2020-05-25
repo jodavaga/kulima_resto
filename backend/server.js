@@ -1,9 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
+// Data abse simulation
 const data = require('./src/assets/data.json');
+const users = require('./src/assets/users.json');
+
+// Authentication, JWT
+const jwt = require('./src/libraries/token-generator');
 
 // Middlewares
-const validations = require('./src/middlewares/validations');
+const validations = require('./src/libraries/validations');
 
 const app = express();
 
@@ -11,6 +17,23 @@ app.use(bodyParser.json());
 
 // initialize data (plates)
 const plates = data;
+
+/* ==================================================================
+*   Autenticacion
+* ======================== */
+
+
+app.post('/login', validations.validateUserPass, (req, res) => {
+
+    const { token } = req.query;
+
+    res.json ({ token: jwt.tokenGenerator(req.body.username) });
+});
+
+app.get('/loginSeguro', validations.verifyToken, (req, res) => {
+    res.send(`Bienvenido, ${req.username}`);
+})
+
 
 /* ==================================================================
 *   Plates
